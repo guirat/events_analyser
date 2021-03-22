@@ -8,7 +8,8 @@ def parse_events(data):
     df = create_event_count(events)
     df = multiply_by_constant(df, "impressions",0.1)
     save_csv(df)
-    return df
+    result = get_ids(events)
+    return result
 
 
 def create_event_count(events):
@@ -27,3 +28,7 @@ def multiply_by_constant(df, column, c):
 
 def save_csv(df):
     df.to_csv("events.csv", sep=';', encoding='utf-8', header='true')
+
+
+def get_ids(events):
+    return [event['id'] for event in events]
