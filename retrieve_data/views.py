@@ -6,7 +6,8 @@ import pandas as pd
 def parse_events(data):
     events = json.loads(data)
     df = create_event_count(events)
-    df = multiply_by_constant(df, 0.1)
+    df = multiply_by_constant(df, "impressions",0.1)
+    save_csv(df)
     return df
 
 
@@ -19,6 +20,10 @@ def create_event_count(events):
     return df_grouped
 
 
-def multiply_by_constant(df, column,c):
+def multiply_by_constant(df, column, c):
     df[column+"_c"] = c * df[column]
     return df
+
+
+def save_csv(df):
+    df.to_csv("events.csv", sep=';', encoding='utf-8', header='true')
