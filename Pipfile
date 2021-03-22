@@ -11,6 +11,8 @@ black = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-django = "*"
+numpy = "*"
+pandas = "*"
 
 [dev-packages]
 
