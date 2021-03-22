@@ -1,5 +1,6 @@
 import pytest
-from retrieve_data.views import create_event_count
+from retrieve_data.views import create_event_count, multiply_by_constant
+import pandas as pd
 
 
 @pytest.mark.parametrize(
@@ -25,3 +26,9 @@ def test_create_event_count(events):
     assert items == ['(1594887665, 1594891265]', '(1594891265, 1594894865]', '(1594894865, 1594898465]']
     assert list(df['impressions']) == [0, 0, 1]
     assert list(df['video_25']) == [1, 0, 0]
+
+
+def test_multiply_by_constant():
+    df = pd.DataFrame({"col": [1, 2, 3]})
+    df = multiply_by_constant(df, "col", 2)
+    assert list(df["col_c"]) == [2, 4, 6]
